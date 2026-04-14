@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KARAX — Engagement & Retention UX Impact Report</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --border: #e2e6ea;
+      --border-strong: #c8cdd4;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+      --green: #059669;
+      --green-light: #ecfdf5;
+      --green-border: #a7f3d0;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --red-border: #fecaca;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --amber-border: #fde68a;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --purple-border: #ddd6fe;
+      --tag-bg: #f1f5f9;
+      --tag-text: #475569;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ─── Layout ─── */
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ─── Header ─── */
+    .report-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 44px;
+      margin-bottom: 32px;
+    }
+    .report-header .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .report-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .report-header .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+    .report-header .meta span strong { color: var(--text-primary); }
+
+    /* ─── Section ─── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* ─── Executive Summary ─── */
+    .exec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .exec-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .exec-list li .icon {
+      font-size: 16px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .exec-list li .content { flex: 1; }
+    .exec-list li .content strong { display: block; margin-bottom: 2px; font-size: 13.5px; }
+    .exec-list li .content p { font-size: 13px; color: var(--text-secondary); }
+
+    /* ─── Feature Grid ─── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      background: var(--bg);
+    }
+    .feature-card .fc-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .feature-card .fc-head .badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .badge-p0 { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .badge-p1 { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+    .badge-working { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+    .feature-card h3 { font-size: 13.5px; font-weight: 700; }
+    .feature-card p { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+    .feature-card .meta-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    /* ─── Two-col ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .col-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      background: var(--bg);
+    }
+    .col-block h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .col-block ul {
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .col-block ul li { margin-bottom: 6px; }
+
+    /* ─── Alert boxes ─── */
+    .alert {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    .alert.red { background: var(--red-light); border: 1px solid var(--red-border); color: #7f1d1d; }
+    .alert.amber { background: var(--amber-light); border: 1px solid var(--amber-border); color: #78350f; }
+    .alert.green { background: var(--green-light); border: 1px solid var(--green-border); color: #064e3b; }
+    .alert.blue { background: var(--accent-light); border: 1px solid var(--accent-border); color: #1e3a8a; }
+    .alert.purple { background: var(--purple-light); border: 1px solid var(--purple-border); color: #4c1d95; }
+    .alert strong { display: block; font-size: 13.5px; margin-bottom: 4px; }
+
+    /* ─── Feature-Level Impact Table ─── */
+    .impact-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .impact-table thead tr {
+      background: var(--bg);
+      border-bottom: 2px solid var(--border-strong);
+    }
+    .impact-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .impact-table tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .impact-table tbody tr:last-child { border-bottom: none; }
+    .impact-table tbody td {
+      padding: 12px 14px;
+      vertical-align: top;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .impact-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    .impact-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pill-positive { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+    .pill-negative { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
+    .pill-neutral  { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber-border); }
+    .pill-broken   { background: #fdf4ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+
+    /* ─── Risk Matrix ─── */
+    .risk-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      background: var(--bg);
+    }
+    .risk-row:last-child { margin-bottom: 0; }
+    .risk-sev {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 1px;
+    }
+    .sev-critical { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .sev-high     { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+    .sev-medium   { background: var(--amber-light); color: #92400e; border: 1px solid var(--amber-border); }
+    .risk-content { flex: 1; }
+    .risk-content strong { font-size: 13.5px; display: block; margin-bottom: 3px; color: var(--text-primary); }
+    .risk-content p { font-size: 13px; color: var(--text-secondary); }
+
+    /* ─── System Issues ─── */
+    .sys-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .sys-card:last-child { margin-bottom: 0; }
+    .sys-card .sys-head {
+      padding: 12px 18px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .sys-card .sys-head h4 { font-size: 13.5px; font-weight: 700; }
+    .sys-card .sys-body {
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .sys-card .sys-body ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+    .sys-card .sys-body ul li { margin-bottom: 5px; }
+
+    /* ─── Fixes Section ─── */
+    .fix-group { margin-bottom: 24px; }
+    .fix-group:last-child { margin-bottom: 0; }
+    .fix-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .fix-group-header h3 { font-size: 14px; font-weight: 700; }
+    .fix-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      background: var(--bg);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .fix-item:last-child { margin-bottom: 0; }
+    .fix-num {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--text-primary);
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .fix-item .fix-content strong {
+      display: block;
+      font-size: 13.5px;
+      margin-bottom: 3px;
+      color: var(--text-primary);
+    }
+    .fix-item .fix-content p { font-size: 13px; color: var(--text-secondary); }
+
+    /* ─── Final Verdict ─── */
+    .verdict-box {
+      border-radius: 10px;
+      border: 2px solid var(--border-strong);
+      padding: 28px 32px;
+      background: var(--surface);
+    }
+    .verdict-score {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .verdict-score .score-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--amber-light);
+      border: 3px solid var(--amber);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .verdict-score .score-circle .num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .verdict-score .score-circle .denom {
+      font-size: 11px;
+      color: var(--amber);
+      font-weight: 600;
+    }
+    .verdict-score .assessment h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .verdict-score .assessment p { font-size: 13px; color: var(--text-secondary); }
+    .verdict-conditions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .verdict-conditions .vc-item {
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 12px 14px;
+      font-size: 13px;
+      background: var(--bg);
+    }
+    .verdict-conditions .vc-item .vc-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .vc-not-ready .vc-label { color: var(--red); }
+    .vc-ready-if .vc-label { color: var(--green); }
+
+    /* ─── Divider ─── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    /* ─── Inline code ─── */
+    code {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 12px;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      color: #be123c;
+    }
+
+    /* ─── User Perspective Flows ─── */
+    .ux-flow-container {
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fafafa;
+      overflow: hidden;
+    }
+    .ux-flow-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: white;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ux-flow-body {
+      padding: 16px;
+    }
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .flow-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-weight: 500;
+      flex: 1;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .flow-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .comparison-box {
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    .comparison-expect {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .comparison-reality {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .comparison-box strong {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .comparison-expect strong { color: var(--green); }
+    .comparison-reality strong { color: var(--red); }
+    .ux-perception {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── p spacing ─── */
+    .section-body p { margin-bottom: 10px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 700px) {
+      .feature-grid, .two-col, .verdict-conditions { grid-template-columns: 1fr; }
+      .report-header { padding: 24px; }
+      .section-body { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="report-header">
+    <div class="eyebrow">Internal Product Report · Confidential</div>
+    <h1>KARAX — Engagement & Retention UX Impact Report</h1>
+    <p style="font-size:13.5px; color:var(--text-secondary); max-width:680px;">
+      An analysis of the nine engagement features shipped to the Karax.ai dashboard —
+      evaluated against QA test results, system architecture constraints, and real-user
+      behavioral expectations. This report answers one question:
+      <strong>"How do these features impact real user experience and retention?"</strong>
+    </p>
+    <div class="meta">
+      <span><strong>Authored by:</strong> Antigravity · Product UX Analysis</span>
+      <span><strong>Date:</strong> April 15, 2026</span>
+      <span><strong>Sources:</strong> QA Engagement Testing Doc · Karax Testing Results · First-Time UX Audit</span>
+      <span><strong>Test Suite:</strong> 114 unit tests · 11 suites · All passing</span>
+    </div>
+  </div>
+
+  <!-- ══════════ 2. EXECUTIVE SUMMARY ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>Executive Summary</h2>
+    </div>
+    <div class="section-body">
+      <ul class="exec-list">
+        <li>
+          <div class="icon">⚙️</div>
+          <div class="content">
+            <strong>Most features are working — but a few specific issues affect the overall experience</strong>
+            <p>All 114 unit tests pass across 11 suites. Core onboarding is functional. However, tests were conducted via direct localStorage manipulation rather than end-to-end user flows. This means feature logic is validated, but the data pipeline connecting onboarding actions to feature triggers has gaps that surface in real usage.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">💾</div>
+          <div class="content">
+            <strong>localStorage dependency creates cross-device inconsistency</strong>
+            <p>All <code>karax_eng_*</code> engagement state is stored locally per browser. This is a known architectural choice — but it means a user switching devices or clearing their browser sees a fresh state, which creates inconsistency in the checklist and inactivity features. This is not a bug; it is a design constraint that needs a long-term fix.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">🎯</div>
+          <div class="content">
+            <strong>Profession-based suggestions: confirmed not working in production</strong>
+            <p>The suggestion logic passed 20 unit tests, but in production the <code>user_type</code> value is not being correctly written to the user object in localStorage during the onboarding flow. As a result, users see generic prompts instead of role-specific ones — creating an inconsistency between what onboarding promises and what the dashboard delivers.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">🔔</div>
+          <div class="content">
+            <strong>Notification badge and checklist progress require a page refresh to update</strong>
+            <p>This is a confirmed system limitation. After completing a first action (e.g., sending a message), the checklist step does not mark itself complete until the user refreshes. Similarly, the notification count badge does not update in real time. Both features work correctly after reload — but the lack of immediate feedback may cause users to think their action didn't register.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">⏱️</div>
+          <div class="content">
+            <strong>Some engagement nudges fire before the user has had a clear value moment</strong>
+            <p>The 2-hour inactivity reminder, app download QR codes during onboarding, and the power-user upgrade overlay all appear early in the user journey — before the user has necessarily experienced a meaningful outcome. Adjusting the timing of these nudges to follow a first successful interaction would improve their effectiveness.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════ 3. WHAT WAS IMPLEMENTED ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>What Was Implemented — Engagement Feature Inventory</h2>
+    </div>
+    <div class="section-body">
+      <p style="color:var(--text-secondary); margin-bottom:18px;">Nine engagement features were shipped across the Karax.ai dashboard frontend. All are validated by unit tests and scoped to the <code>karax_eng_*</code> localStorage namespace.</p>
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>2-Hour Inactivity Reminder</h3>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <p>Fires a toast notification if user signed up more than 2 hours ago and hasn't completed a first action (chat, meeting, skill). Copy: "No action yet? Try OneChat — see results in 30 seconds." Auto-dismisses in 8s. One-time guard via <code>karax_eng_reminder_shown</code>.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage</span>
+            <span class="tag">toast</span>
+            <span class="tag">6 unit tests</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Notification Bell + Inbox</h3>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <p>Bell icon in sidebar header with unread count badge (max "9+"). Clicking navigates to <code>/dashboard/notifications</code>. Inbox supports filter tabs (Unread, Engagement, System), mark-as-read, mark-all-read. Desktop shows a split panel; mobile shows detail view with back button.</p>
+          <div class="meta-row">
+            <span class="tag">backend-fed</span>
+            <span class="tag">8 unit tests</span>
+            <span class="tag">responsive</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Getting Started Checklist</h3>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <p>Bottom-right widget showing 4 steps: Send first AI message, Upload/join a meeting, Install a skill, Connect an app. Steps link to dashboard routes. Completed steps show checkmarks. Minimizable and dismissable — state persists in localStorage. Auto-hides 3 days after all steps complete.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage</span>
+            <span class="tag">12 unit tests</span>
+            <span class="tag">persistent widget</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Drop-Off Recovery</h3>
+            <span class="badge badge-p1">P1</span>
+          </div>
+          <p>If onboarding checklist is incomplete AND user has been inactive >24 hours, fires a POST to <code>/engagement/track-dropoff/</code>. Throttled via <code>karax_eng_dropoff_posted_at</code>. Re-engagement email clicks tracked via <code>?reason=inactivity</code> URL param.</p>
+          <div class="meta-row">
+            <span class="tag">backend event</span>
+            <span class="tag">7 unit tests</span>
+            <span class="tag">email-triggered</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Profession-Based Suggestions</h3>
+            <span class="badge badge-p1">P1</span>
+          </div>
+          <p>Inline banner in the OneChat welcome screen suggesting a role-specific action (e.g., Sales → "Capture and summarize your sales calls"). 10+ profession mappings. Falls back to "Start your first AI conversation" for unknown types. Per-route suggestions on inner pages.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage user_type</span>
+            <span class="tag">20 unit tests</span>
+            <span class="tag">❌ broken in prod</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Power User Upgrade Trigger</h3>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <p>At 10 messages sent, fires a full-screen upgrade overlay for free-plan users. Shown once per session via sessionStorage guard. Engagement score tracked: messages, meetings, skills, active_days. Subscription status widget in sidebar shows plan usage with circular progress rings.</p>
+          <div class="meta-row">
+            <span class="tag">sessionStorage</span>
+            <span class="tag">9 unit tests</span>
+            <span class="tag">full-screen overlay</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Inactive User Re-engagement Banner</h3>
+            <span class="badge badge-p0">P0</span>
+          </div>
+          <p>Amber banner after 3+ days inactive: "Welcome back! It's been N day(s). Where would you like to start?" with CTAs for OneChat and Meetings. Backend events posted at 3-day, 7-day, and 14-day thresholds.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage</span>
+            <span class="tag">11 unit tests</span>
+            <span class="tag">backend events</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Sidebar Pulse Dots</h3>
+            <span class="badge badge-p1">P1</span>
+          </div>
+          <p>Animated blue pulse dots appear on sidebar nav items for features never visited, from the second visit onward. Disappear after visiting the feature. No dots on first visit. Tracks feature usage via <code>karax_eng_used_features</code> JSON array.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage</span>
+            <span class="tag">8 unit tests</span>
+            <span class="tag">visit-based</span>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-head">
+            <h3>Related Feature Suggestions</h3>
+            <span class="badge badge-p1">P1</span>
+          </div>
+          <p>Contextual suggestion cards on the OneChat welcome screen based on usage score. E.g., if meetings ≥ 2 and OneChat unused → "Discuss your meeting summaries." Max 2 cards shown. Profession-weighted ordering. 23 unit tests covering edge cases.</p>
+          <div class="meta-row">
+            <span class="tag">localStorage score</span>
+            <span class="tag">23 unit tests</span>
+            <span class="tag">contextual</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 4. WHAT IS WORKING WELL ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>What Is Working Well</h2>
+    </div>
+    <div class="section-body">
+      <div class="alert green">
+        <strong>✅ Notification inbox: technically solid architecture</strong>
+        The bell icon, unread count badge, filter tabs, mark-as-read, mark-all-read, and responsive split/detail panel all work correctly. The skeleton loading state during slow network is a professional touch that increases perceived quality.
+      </div>
+      <div class="alert green">
+        <strong>✅ Inactivity banner messaging is emotionally appropriate</strong>
+        "Welcome back! It's been N day(s). Where would you like to start?" is warm, non-accusatory, and contextually relevant. The day-count specificity ("It's been 5 day(s)") makes it feel personalized. The CTA choices (OneChat, Meetings) are well-prioritized.
+      </div>
+      <div class="alert green">
+        <strong>✅ Getting Started checklist widget is structurally sound</strong>
+        The minimize-persist, dismiss-persist, auto-hide at completion, and step-link-to-route behaviors all work correctly per test results. This is the most complete engagement feature in the stack.
+      </div>
+      <div class="alert green">
+        <strong>✅ Drop-off recovery event throttling is well-designed</strong>
+        The 24-hour guard on <code>karax_eng_dropoff_posted_at</code> prevents spam to the backend. The <code>?reason=inactivity</code> URL param tracking on re-engagement email clicks enables attribution. This is mature event tracking architecture.
+      </div>
+      <div class="alert green">
+        <strong>✅ Power user detection logic is correctly tuned</strong>
+        The sessionStorage guard (one overlay per session) prevents harassment of power users. The engagement score system (messages, meetings, skills, active_days) is a meaningful composite signal rather than a single vanity metric.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 5. CRITICAL UX GAPS ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>Critical UX Gaps</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="alert red">
+        <strong>🔴 GAP 1 — Real-Time Update Failure: Notifications & Checklist Progress</strong>
+        The notification dot unread count and the Getting Started checklist step completion status do NOT update in real time — they require a full page refresh. In practice, a user who sends their first AI message and looks at the checklist will still see it unchecked until they refresh. This creates the perception that the action didn't register or that the interface is broken. Per QA test case 2.14: "Completed steps show check" — but only after refresh. This is a confirmed system limitation.
+        <br/><br/>
+        <strong>Psychological impact:</strong> Users don't refresh dashboards. They expect interfaces to reflect reality. An unchecked box after completing a task is a trust failure, not a UX inconvenience.
+      </div>
+
+      <div class="alert red">
+        <strong>🔴 GAP 2 — localStorage State Wipes Across All Context Switches</strong>
+        100% of engagement state lives in <code>localStorage</code> keyed to <code>karax_eng_*</code>. This means:
+        <br/>• Private/incognito browsing = completely fresh state (no continuity)
+        <br/>• Different browser on same computer = no state
+        <br/>• Mobile app / Chrome extension = no state from web session
+        <br/>• Browser history clear = lost progress
+        <br/><br/>
+        A user who completes 3 of 4 getting started steps on their laptop, then opens Karax on their phone, sees a fresh blank checklist. This is a retention loop breaker — completing progress only to see it reset is one of the most demoralizing product experiences.
+      </div>
+
+      <div class="alert red">
+        <strong>🔴 GAP 3 — Profession-Based Suggestions Confirmed Broken</strong>
+        The feature is tested via 20 unit tests — all passing. But the test strategy manipulates <code>localStorage</code> directly:
+        <code>u.user_type = "sales"; localStorage.setItem("user", JSON.stringify(u))</code>
+        <br/><br/>
+        In production, the <code>user_type</code> value comes from the onboarding role selection and must be written back to the <code>user</code> object in localStorage after the onboarding flow. This write-back is either missing or incorrectly structured. The result: the onboarding collects role data, the user enters the dashboard, and sees generic suggestions. The personalization promise is broken at the exact moment of highest expectation.
+      </div>
+
+      <div class="alert amber">
+        <strong>🟡 GAP 4 — Backend Re-engagement Events Are Incomplete</strong>
+        Drop-off tracking (POST to <code>/engagement/track-dropoff/</code>) and re-engagement reason tracking (POST to <code>/engagement/track-reengagement-reason/</code>) are confirmed failing or incomplete in the known issues. This means:
+        <br/>• Users who drop off are not being captured in the backend
+        <br/>• Re-engagement email campaigns cannot attribute click sources
+        <br/>• 3-day / 7-day / 14-day inactivity server events may not be firing reliably
+        <br/><br/>
+        The engagement system is collecting experience signals but not closing the loop with backend analytics — the data needed to improve retention is not reaching the team.
+      </div>
+
+      <div class="alert amber">
+        <strong>🟡 GAP 5 — Artificial Engagement Feeling: Nudges Without Value Earned</strong>
+        The 2-hour inactivity reminder fires if a user hasn't taken a first action. But the reason a user hasn't acted is usually that the interface hasn't given them a compelling reason yet — not that they forgot. Sending "No action yet? Try OneChat — see results in 30 seconds" to a user who is still figuring out what OneChat is adds pressure without solving the actual barrier (unclear value, setup friction). The nudge treats the symptom, not the cause.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 6. WHERE EXPERIENCE BREAKS (USER PERSPECTIVE) ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2>Where Experience Breaks (User Perspective)</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom: 20px; font-size: 14px; color: var(--text-secondary);">
+        The following scenarios illustrate instances where the system behaves correctly according to technical logic, but feels inconsistent from the user's experiential perspective.
+      </p>
+
+      <div class="ux-flow-container">
+        <div class="ux-flow-header">
+          <span style="font-size: 16px;">🔄</span> The "Not Real-Time" Checklist Action
+        </div>
+        <div class="ux-flow-body">
+          <div class="flow-steps">
+            <div class="flow-step">1. User sends first AI message</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">2. Views "Getting Started" checklist</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">3. Checklist still shows 0/4</div>
+          </div>
+          <div class="flow-comparison">
+            <div class="comparison-box comparison-expect">
+              <strong>Expected Behavior</strong>
+              Checklist instantly updates to show "Send first message" as ticked, confirming the system recognized their action.
+            </div>
+            <div class="comparison-box comparison-reality">
+              <strong>Actual System Behavior</strong>
+              State only updates on page reload. Checklist remains unchecked until manual refresh.
+            </div>
+          </div>
+          <div class="ux-perception">
+            <strong>Perception Gap:</strong> The UI does not update after the action. The user assumes their action didn't register or that the interface is frozen. A checklist that cannot update dynamically contradicts the expectation of an intelligent, real-time AI workspace.
+          </div>
+        </div>
+      </div>
+
+      <div class="ux-flow-container">
+        <div class="ux-flow-header">
+          <span style="font-size: 16px;">🎯</span> The Personalization Illusion
+        </div>
+        <div class="ux-flow-body">
+          <div class="flow-steps">
+            <div class="flow-step">1. User selects "Sales" in Onboarding</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">2. Enters Karax Dashboard</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">3. Sees prompt: "Write a python script..."</div>
+          </div>
+          <div class="flow-comparison">
+            <div class="comparison-box comparison-expect">
+              <strong>Expected Behavior</strong>
+              Dashboard greets them with contextually specific suggestions exactly aligned with what they do daily (e.g., "Draft a follow-up email from yesterday's call.").
+            </div>
+            <div class="comparison-box comparison-reality">
+              <strong>Actual System Behavior</strong>
+              Profession value is not saved successfully in production; the system falls back to default engineering/management suggestions.
+            </div>
+          </div>
+          <div class="ux-perception">
+            <strong>Perception Gap:</strong> Input is not reflected in output. The user explicitly answered a setup question to customize their experience, but the immediate result ignores their input, breaking trust early in the journey.
+          </div>
+        </div>
+      </div>
+
+      <div class="ux-flow-container">
+        <div class="ux-flow-header">
+          <span style="font-size: 16px;">📱</span> The Context Switch Erasure
+        </div>
+        <div class="ux-flow-body">
+          <div class="flow-steps">
+            <div class="flow-step">1. Set up Karax on laptop</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">2. Complete 3 of 4 setup steps</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">3. Open Karax app on phone</div>
+          </div>
+          <div class="flow-comparison">
+            <div class="comparison-box comparison-expect">
+              <strong>Expected Behavior</strong>
+              Phone app remembers desktop progress, allowing the user to seamlessly complete the final step on mobile.
+            </div>
+            <div class="comparison-box comparison-reality">
+              <strong>Actual System Behavior</strong>
+              Because state is completely device-local, the phone app shows a fresh, blank checklist at 0/4.
+            </div>
+          </div>
+          <div class="ux-perception">
+            <strong>Perception Gap:</strong> State resets on device change. For professional users who frequently switch contexts, an application that routinely "forgets" them creates a high-friction environment that feels scattered rather than unified.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 7. FEATURE-LEVEL UX IMPACT ANALYSIS ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2>Feature-Level UX Impact Analysis</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:18px; color:var(--text-secondary);">Each feature evaluated on: what it does, how a real user perceives it on first encounter, and its net impact on engagement and retention.</p>
+      <table class="impact-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>User Perception</th>
+            <th>Usefulness</th>
+            <th>Retention Impact</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2-Hr Inactivity Reminder</td>
+            <td>Feels slightly pushy if the user is still exploring. "I've only been here 2 hours — why does it think I'm inactive?" The 8-second auto-dismiss means many users won't read it fully.</td>
+            <td>Low-Medium. Useful for genuinely passive users; unnecessary friction for active explorers who happen not to have clicked a "first action" yet.</td>
+            <td><span class="impact-pill pill-neutral">Mixed</span></td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Notification Bell + Inbox</td>
+            <td>Familiar mental model (all apps have a bell). First-time users with an empty inbox receive a dead-end navigation experience with no guidance.</td>
+            <td>Medium. High potential when populated, but an empty inbox on day 1 creates a "nothing here" anti-pattern. No proactive empty-state message.</td>
+            <td><span class="impact-pill pill-neutral">Neutral</span> on day 1; <span class="impact-pill pill-positive">Positive</span> after content populates</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Getting Started Checklist</td>
+            <td>Familiar and expected. But fires simultaneously with the 3-step guided tour overlay — user sees two competing onboarding systems at once. Most will Skip the overlay and ignore the checklist as a "second ask."</td>
+            <td>Medium-High structurally — but the step labels ("Send your first AI message") are task-framed, not benefit-framed. Users don't know WHY they should complete each step.</td>
+            <td><span class="impact-pill pill-neutral">Mixed</span> — helps returning users who remember it; confuses new users who encounter it alongside the tour overlay</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Drop-Off Recovery</td>
+            <td>Invisible to the user (backend event only). But impacts whether a re-engagement email is sent. If the email is well-written and timed correctly, high impact. Currently backend events are incomplete.</td>
+            <td>High potential, low actual (due to backend failures). The re-engagement URL param tracking is a smart implementation when it works.</td>
+            <td><span class="impact-pill pill-negative">Negative</span> impact — backend failures mean dropped users are invisible to the system and receive no re-engagement</td>
+            <td><span class="impact-pill pill-broken">Incomplete</span></td>
+          </tr>
+          <tr>
+            <td>Profession-Based Suggestions</td>
+            <td>Users who selected a role during onboarding expect the dashboard to reflect that choice. Seeing generic prompts creates an inconsistency — the product collected their preference but didn't use it.</td>
+            <td>Low in current state. When working, this feature is among the most valuable in the engagement stack — role-relevant prompts increase the likelihood of a first meaningful interaction.</td>
+            <td><span class="impact-pill pill-negative">Reduced</span> — feature logic works (per tests) but data pipeline from onboarding to dashboard is incomplete.</td>
+            <td><span class="impact-pill pill-broken">Fix Needed</span></td>
+          </tr>
+          <tr>
+            <td>Power User Upgrade Trigger</td>
+            <td>A full-screen overlay is the highest-friction interruption pattern in UI design. Users who have sent 10 messages are genuinely engaged — but the overlay blocks their next action mid-flow. If the overlay is not contextually timed (e.g., appears right after seeing a meaningful AI response), it feels like a paywall, not an upgrade invitation.</td>
+            <td>Medium — the sessionStorage guard (one per session) is correct. But the trigger condition (10 messages) doesn't account for whether those messages generated value. 10 "hello" messages ≠ 10 productive AI interactions.</td>
+            <td><span class="impact-pill pill-neutral">Mixed</span> — good idea, risk of feeling like a paywall to power users who haven't experienced the product's full value yet</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Inactive User Re-engagement Banner</td>
+            <td>Warm and non-judgmental. "Welcome back! It's been 5 day(s). Where would you like to start?" is one of the best-written pieces of copy in the engagement system. The CTAs (Try OneChat, See latest meetings) are concrete and low-friction.</td>
+            <td>High — this is the right pattern for re-engaging users who remember the product exists but need a gentle hook back in. The 3-day trigger is well-calibrated.</td>
+            <td><span class="impact-pill pill-positive">Positive</span> — best-designed feature in the engagement stack</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Sidebar Pulse Dots</td>
+            <td>The animated blue dot is visually noticeable without being intrusive. But on first visit (visit_count = 1) no dots appear — this is correct. On second visit, multiple dots may appear simultaneously, creating a "why is everything flashing?" moment if many features are unused.</td>
+            <td>Medium. Useful for guiding returning users to unvisited features. Risk: if 4 sidebar items all have pulse dots, the user doesn't know which to explore first — the signal loses specificity.</td>
+            <td><span class="impact-pill pill-neutral">Neutral-Positive</span> — directionally correct, needs single-dot-at-a-time priority logic</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+          <tr>
+            <td>Related Feature Suggestions</td>
+            <td>The most sophisticated feature in the stack (23 unit tests). Contextual cards like "Discuss your meeting summaries → Open in OneChat" are high-value cross-sell moments IF they appear after a relevant experience. They appear on the OneChat welcome screen — the right location.</td>
+            <td>High potential. The issue is ordering: suggestions based on engagement score may misfire early (e.g., suggesting "Build a custom agent" to a user who just sent their first 3 messages). The conditions are too loose for early users.</td>
+            <td><span class="impact-pill pill-positive">Positive</span> for users past initial setup; <span class="impact-pill pill-neutral">Neutral</span> for first-session users</td>
+            <td><span class="impact-pill pill-positive">Working</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════ 8. RETENTION RISK ANALYSIS ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <h2>Retention Risk Analysis</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="risk-row">
+        <div class="risk-sev sev-critical">High</div>
+        <div class="risk-content">
+          <strong>Engagement State Resets on Device Switch — Inconsistent Checklist Experience</strong>
+          <p>A user who completes 3 of 4 checklist steps on their laptop will see a blank checklist at 0/4 on their phone. For professionals who work across devices, this creates a noticeably inconsistent experience. The checklist and inactivity features are most affected. This is a known consequence of the localStorage architecture and should be addressed in a backend sync sprint.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev sev-critical">High</div>
+        <div class="risk-content">
+          <strong>Engagement Nudges May Fire Before the User Has Experienced Product Value</strong>
+          <p>The 2-hour reminder, checklist widget, upgrade overlay, and pulse dots all appear in the first session — before most users have completed a meaningful AI interaction. Nudges are more effective when they follow a value moment rather than precede it. Currently, the user may feel prompted to act before they understand why they should.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev sev-critical">High</div>
+        <div class="risk-content">
+          <strong>Personalization Inconsistency — Onboarding Collects Role, Dashboard Ignores It</strong>
+          <p>KARAX's onboarding asks users to select their role — setting an expectation of a tailored experience. When the dashboard shows generic suggestions (due to the user_type pipeline issue), it creates an inconsistency that may reduce confidence in the product's personalization capability. Fixing the data pipeline from onboarding to the suggestion feature resolves this directly.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev sev-high">Medium</div>
+        <div class="risk-content">
+          <strong>Meeting Intelligence Requires Setup That Isn't Surfaced During Onboarding</strong>
+          <p>Meeting transcription and summarisation — one of KARAX's strongest features — requires connecting a calendar or installing the Chrome extension before it's usable. The Getting Started checklist includes "Upload or join a meeting" but doesn't explain the integration requirement. Users who don't discover this setup step will not experience this feature in their first session.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev sev-high">Medium</div>
+        <div class="risk-content">
+          <strong>Drop-Off Backend Events Incomplete — Re-engagement Pipeline Has Gaps</strong>
+          <p>The frontend correctly fires drop-off and re-engagement events, but backend handling is incomplete (confirmed 400 error on <code>track-reengagement-reason</code>; drop-off event status unverified). Until these endpoints are working, users who go inactive after their first session will not receive re-engagement emails, reducing the effectiveness of the retention loop.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev sev-medium">Low–Medium</div>
+        <div class="risk-content">
+          <strong>Checklist and Notification Count Require Refresh — May Create Doubt About Action Completion</strong>
+          <p>After a user completes a checklist action, the step remains unchecked until the page reloads. After marking a notification as read, the badge count doesn't drop immediately. Both features work correctly after refresh — but the delay may cause users to question whether their action registered. An optimistic UI update (instant feedback without waiting for reload) would close this gap.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 9. SYSTEM-LEVEL ISSUES ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <h2>System-Level Issues</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sys-card">
+        <div class="sys-head">
+          <span style="font-size:16px;">💾</span>
+          <h4>A — localStorage vs Backend State: Known Architectural Constraint</h4>
+        </div>
+        <div class="sys-body">
+          <p>Engagement state is stored in <code>localStorage</code> under the <code>karax_eng_*</code> namespace. This is a practical short-term approach — fast to implement, no backend dependency — but it has well-understood limitations:</p>
+          <ul>
+            <li><strong>Not cross-device</strong> — state does not transfer between browsers or devices</li>
+            <li><strong>Not persistent</strong> — browser clears or private mode resets all engagement state</li>
+            <li><strong>Not portable</strong> — web session state is separate from the Chrome extension and mobile app</li>
+            <li><strong>Not queryable by the team</strong> — engagement signals like <code>karax_eng_score</code> are siloed per browser and not available in PostHog or GA4</li>
+          </ul>
+          <p style="margin-top:10px;">This is a known constraint, not an oversight. The recommended next step is to define a backend endpoint that syncs engagement state per user account, enabling cross-device continuity and team-level analytics.</p>
+        </div>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-head">
+          <span style="font-size:16px;">🔄</span>
+          <h4>B — Non Real-Time Updates: WebSocket Gap</h4>
+        </div>
+        <div class="sys-body">
+          <p>Confirmed system limitation: notification dot unread count and checklist step completion require manual page refresh to update. The current architecture uses polling or page-load event triggers, not a persistent WebSocket or Server-Sent Events (SSE) connection for notification state.</p>
+          <ul>
+            <li>Notification bell badge: fetched on page load, not subscribed to live updates</li>
+            <li>Checklist completion: reads from localStorage on mount, requires user action to re-trigger re-read</li>
+            <li>No optimistic UI updates observed — action happens, UI doesn't reflect it until next load</li>
+          </ul>
+          <p style="margin-top:10px;"><strong>Fix path:</strong> Either implement a lightweight SSE subscription for notification updates, or implement optimistic local state mutation when user performs a first-action (directly toggle the localStorage flag and re-render the checklist). The SSE approach scales better; the optimistic approach can be shipped in hours.</p>
+        </div>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-head">
+          <span style="font-size:16px;">🧪</span>
+          <h4>C — Unit Test Coverage vs End-to-End Flow Coverage</h4>
+        </div>
+        <div class="sys-body">
+          <p>All 114 unit tests validate feature logic by writing directly to localStorage in test setup:</p>
+          <pre style="background:var(--tag-bg); border:1px solid var(--border); border-radius:6px; padding:10px 14px; font-size:12px; font-family:monospace; color:#be123c; overflow-x:auto; margin:10px 0;">localStorage.setItem("karax_eng_signup_at", new Date(Date.now() - 3 * 3600000).toISOString())
+const u = JSON.parse(localStorage.getItem("user"))
+u.user_type = "sales"
+localStorage.setItem("user", JSON.stringify(u))</pre>
+          <p>This correctly validates each feature in isolation. However, it does not validate that the <em>data pipeline from user actions to feature triggers</em> works end-to-end. The profession-based suggestions issue is a direct result of this gap: the suggestion logic is correct (all 20 tests pass), but the <code>user_type</code> is not being written to localStorage during the actual onboarding flow — a step the unit tests don't cover because they set it directly.</p>
+          <p><strong>Flows not currently covered by tests:</strong></p>
+          <ul>
+            <li>Complete signup → onboarding → dashboard with real API responses</li>
+            <li>Google OAuth signup → engagement state initialization</li>
+            <li>Backend event delivery confirmation (currently fires POST but does not assert on response)</li>
+          </ul>
+          <p style="margin-top:8px;"><strong>Recommendation:</strong> Add integration tests for the full onboarding → dashboard flow. The unit test suite is strong — it just needs a complementary integration layer to catch pipeline-level issues before they reach production.</p>
+        </div>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-head">
+          <span style="font-size:16px;">🔗</span>
+          <h4>D — Backend Event Tracking: Incomplete Loop</h4>
+        </div>
+        <div class="sys-body">
+          <p>The engagement system fires events to the backend at key moments, but several are confirmed failing or incomplete:</p>
+          <ul>
+            <li><code>POST /engagement/track-dropoff/</code> — drop-off detection failing</li>
+            <li><code>POST /engagement/track-reengagement-reason/</code> — re-engagement attribution failing</li>
+            <li><code>POST /engagement/track-event/</code> with <code>event_type: power_user</code> — status unconfirmed</li>
+            <li><code>POST /engagement/track-inactive/</code> at 3d/7d/14d thresholds — may be firing but backend handling unverified</li>
+          </ul>
+          <p style="margin-top:8px;">Without valid backend event capture, the product analytics layer (PostHog, GA4, Clarity) has no engagement funnel data to optimize from. Every retention decision the team makes is being made without data.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 10. RECOMMENDED FIXES ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <h2>Recommended Fixes</h2>
+    </div>
+    <div class="section-body">
+
+      <!-- P0 -->
+      <div class="fix-group">
+        <div class="fix-group-header">
+          <span class="badge badge-p0" style="font-size:12px; padding:3px 10px;">P0 — Immediate (This Sprint)</span>
+          <h3>Confirmed Issues Requiring Immediate Attention</h3>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">1</div>
+          <div class="fix-content">
+            <strong>Fix profession-based suggestions: Write user_type from onboarding to localStorage user object</strong>
+            <p>After the onboarding role selection and "Launch Workspace" click, verify that the <code>user.user_type</code> field in localStorage is being populated from the role the user selected. The unit tests prove the suggestion logic works — the missing piece is the data pipeline. Add an integration test for the full onboarding → dashboard flow that asserts <code>localStorage.getItem("user")</code> contains the role-selected <code>user_type</code>.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">2</div>
+          <div class="fix-content">
+            <strong>Fix checklist real-time update: Add optimistic UI state update on first-action completion</strong>
+            <p>When a user sends their first AI message, immediately write <code>karax_eng_first_onechat = "1"</code> to localStorage AND dispatch a custom event (<code>karax_checklist_update</code>) that the checklist widget listens for. The checklist re-reads localStorage on this event and marks the step complete. This is a zero-architecture fix — no backend required. Estimated: 2–4 hours.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">3</div>
+          <div class="fix-content">
+            <strong>Fix backend event failures: Add error logging + fallback retry for drop-off and re-engagement events</strong>
+            <p>Wrap all <code>/engagement/track-*/</code> POST calls in try/catch with explicit error logging to PostHog or console (at minimum). Add a local queue: if the POST fails, store the pending event in localStorage and retry on next dashboard load. Without this, the team is operating blind on churn data.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">4</div>
+          <div class="fix-content">
+            <strong>Resolve dual onboarding conflict: Remove the 3-step guided tour overlay</strong>
+            <p>The 3-step overlay (modal) fires simultaneously with the Getting Started checklist widget. These two systems create competing onboarding signals. Remove the overlay entirely — the Getting Started checklist is the correct, actionable onboarding mechanism. If a feature tour is required, make it opt-in via a "Show me around" link inside the checklist widget itself.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- P1 -->
+      <div class="fix-group">
+        <div class="fix-group-header">
+          <span class="badge badge-p1" style="font-size:12px; padding:3px 10px;">P1 — High Impact (Ship This Month)</span>
+          <h3>Experience Improvements That Directly Lift Retention</h3>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">1</div>
+          <div class="fix-content">
+            <strong>Rewrite Getting Started checklist step labels as outcome-first</strong>
+            <p>Current task labels ("Send your first AI message") give no reason to act. Rewrite as:<br/>
+            → "See AI answer from your meetings" (was: Upload or join a meeting)<br/>
+            → "Give AI a custom skill" (was: Install a skill)<br/>
+            → "Connect your tools to KARAX" (was: Connect an app)<br/>
+            → "Get instant results in 30 seconds" (was: Send your first AI message)<br/>
+            Each label should communicate the RESULT of completing the step, not the mechanical action.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">2</div>
+          <div class="fix-content">
+            <strong>Add an empty-state message to the notification inbox</strong>
+            <p>New users navigating to <code>/dashboard/notifications</code> see an empty list. Add an informative empty state: "You're all caught up. Once you start using OneChat, you'll get notified about AI responses, meeting summaries, and workflow completions here." This prevents the dead-end navigation experience and sets expectations for what notifications will contain.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">3</div>
+          <div class="fix-content">
+            <strong>Move app download QR codes to a post-value moment</strong>
+            <p>Remove QR codes from the onboarding screen. Instead, trigger a "Get KARAX on your phone" nudge (as a dismissable banner or success toast) after the user completes their first OneChat conversation and receives an AI response. At this moment, they have experienced value and have a reason to want mobile access.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">4</div>
+          <div class="fix-content">
+            <strong>Add a "no meetings yet" guided empty state to the Meetings page</strong>
+            <p>The Meetings page for new users should show a single clear CTA: "Record your first meeting with KARAX" with three integration buttons (Google Meet, Zoom, Teams) and a secondary option "Upload a recording." Add a short explainer: "KARAX transcribes your meeting and extracts action items automatically." This converts the Meetings empty state from a navigation dead end into an onboarding funnel step.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">5</div>
+          <div class="fix-content">
+            <strong>Gate power user upgrade overlay behind a "meaningful interaction" qualifier</strong>
+            <p>Change the trigger from "10 messages sent" to "10 messages sent AND at least one AI response was rated useful OR a meeting was summarized." This ensures the upgrade prompt fires after the user has experienced genuine value — not just after they've tested the product casually. A user who received 10 generic responses and felt underwhelmed is the worst target for an upgrade prompt.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">6</div>
+          <div class="fix-content">
+            <strong>Limit sidebar pulse dots to one at a time, in priority order</strong>
+            <p>When a returning user sees 4 sidebar items with pulse dots simultaneously, the signal is too diffuse to drive action. Implement a priority queue: show a pulse dot on the single most relevant unvisited feature based on user_type. For a Sales user: Meetings (highest value). For a Founder: Workflows. One dot, one clear invitation. Remove dots from other items until the highest-priority one is visited.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- P2 -->
+      <div class="fix-group">
+        <div class="fix-group-header">
+          <span style="background:var(--purple-light); color:var(--purple); border:1px solid var(--purple-border); font-size:12px; font-weight:700; padding:3px 10px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase;">P2 — Strategic</span>
+          <h3>System-Level Improvements for Long-Term Retention</h3>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">1</div>
+          <div class="fix-content">
+            <strong>Migrate engagement state from localStorage to backend-synced store</strong>
+            <p>Define a backend endpoint (<code>GET/POST /engagement/state/</code>) that stores and returns all <code>karax_eng_*</code> key values keyed to the user's account. On dashboard load, fetch backend state and merge with localStorage. On state update, fire a debounced sync POST. This enables cross-device continuity, team analytics, and state recovery after browser clears. Until this is implemented, the engagement system is fundamentally unreliable for serious users.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">2</div>
+          <div class="fix-content">
+            <strong>Implement a "zero-setup first win" flow for Meeting Intelligence</strong>
+            <p>Meeting Intelligence is KARAX's strongest differentiator but requires setup before it works. Create a zero-setup path: allow the user to upload any existing audio file or paste a transcript during onboarding. Run KARAX's AI summarization on it in real time. Show the result immediately. This gives the user the product's primary "aha" moment without requiring integration setup. It converts the most trust-demanding feature into the first experience.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">3</div>
+          <div class="fix-content">
+            <strong>Add end-to-end integration test coverage for onboarding → dashboard data flow</strong>
+            <p>The current test suite has 114 unit tests that all pass, but none validate the complete flow: registration API → OTP verification → onboarding role selection → localStorage state → dashboard feature trigger. Add at least 5 integration tests covering: (1) user_type propagation from onboarding, (2) karax_eng_signup_at write at registration time, (3) first-action flag write after OneChat message, (4) backend event delivery with confirmed response, (5) checklist completion state after route navigation.</p>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-num">4</div>
+          <div class="fix-content">
+            <strong>Redesign the 2-hour reminder timing around value received, not time elapsed</strong>
+            <p>Replace the timer-based trigger (2 hours since signup) with an event-based trigger: "User has been in the dashboard for 5+ cumulative minutes without completing a first action AND has not performed a search or scroll past the suggested workflows." This targets the genuinely confused user, not the user who signed up and left to get coffee. The current timer treats latency as disengagement — they're not the same thing.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 11. FINAL VERDICT ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">11</div>
+      <h2>Final Verdict</h2>
+    </div>
+    <div class="section-body">
+      <div class="verdict-box">
+        <div class="verdict-score">
+          <div class="score-circle">
+            <div class="num">6</div>
+            <div class="denom">/ 10</div>
+          </div>
+          <div class="assessment">
+            <h3>Mostly Working — Three Specific Issues Block a Clean Launch</h3>
+            <p>The engagement system is well-structured and passes all 114 unit tests. Seven of nine features are working as expected and provide genuine value. The issues are specific, not system-wide: profession-based suggestions have a data pipeline gap, backend re-engagement events are incomplete, and checklist/notification updates require a page refresh. Addressing these three areas before general release would significantly improve the first-user experience.</p>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div style="font-size:13.5px; font-weight:700; margin-bottom:12px;">Is this engagement system ready for real users?</div>
+
+        <div class="verdict-conditions">
+          <div class="vc-item vc-not-ready">
+            <div class="vc-label">⚠️ Address Before Launch</div>
+            <ul style="font-size:13px; color:var(--text-secondary); padding-left:16px;">
+              <li style="margin-bottom:5px;">Profession-based suggestion data pipeline — <code>user_type</code> not written from onboarding to localStorage</li>
+              <li style="margin-bottom:5px;">Backend event errors — <code>track-reengagement-reason</code> returning 400; drop-off tracking unverified</li>
+              <li style="margin-bottom:5px;">Checklist and notification badge — need optimistic UI update on action completion</li>
+              <li>Dual onboarding systems (3-step overlay + checklist) — consolidate to checklist only</li>
+            </ul>
+          </div>
+          <div class="vc-item vc-ready-if">
+            <div class="vc-label">✅ Ready to Ship</div>
+            <ul style="font-size: 13px; color:var(--text-secondary); padding-left:16px;">
+              <li style="margin-bottom:5px;">Notification bell + inbox — fully functional, good architecture</li>
+              <li style="margin-bottom:5px;">Inactivity re-engagement banner — working correctly, well-written copy</li>
+              <li style="margin-bottom:5px;">Getting Started checklist — structurally sound, minimize/dismiss persist correctly</li>
+              <li style="margin-bottom:5px;">Power user upgrade trigger — sessionStorage guard working, score logic correct</li>
+              <li>Drop-off event throttling, sidebar pulse dots, related feature suggestions — working per QA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert amber" style="margin-top:18px; margin-bottom:0;">
+          <strong>Bottom Line:</strong>
+          The engagement system is ready for a controlled beta release once the P0 items are resolved. The most impactful fix is the profession-based suggestion pipeline — it is the single point where the onboarding promise and dashboard experience are currently out of sync. Fix that, resolve the backend event errors, and add optimistic checklist updates, and the system is in a strong position to support real users and generate meaningful retention data.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center; margin-top:40px; font-size:12px; color:var(--text-muted);">
+    KARAX Engagement & Retention UX Impact Report · April 2026 · Antigravity Product Analysis<br/>
+    Based on: QA Engagement Testing Doc · Karax Testing Results · First-Time UX Audit (Antigravity)
+  </div>
+
+</div>
+</body>
+</html>
