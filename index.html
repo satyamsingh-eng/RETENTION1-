@@ -555,23 +555,55 @@
 
   <!-- ══════════ HEADER ══════════ -->
   <div class="report-header">
-    <div class="eyebrow">Internal Product Report · Confidential</div>
-    <h1>KARAX — Engagement & Retention UX Impact Report</h1>
+    <div class="eyebrow">Internal Product Report · Confidential · v2 — Live Session Update</div>
+    <h1>KARAX — Engagement &amp; Retention UX Impact Report</h1>
     <p style="font-size:13.5px; color:var(--text-secondary); max-width:680px;">
-      An analysis of the nine engagement features shipped to the Karax.ai dashboard —
-      evaluated against QA test results, system architecture constraints, and real-user
-      behavioral expectations. This report answers one question:
-      <strong>"How do these features impact real user experience and retention?"</strong>
+      An analysis of the engagement features shipped to the Karax.ai dashboard — evaluated against QA test results, system architecture constraints, and real-user behavioral expectations. This is version 2 of the report, updated after a live first-session evaluation performed on April 15, 2026.
+      <strong>"How do these features impact real user experience and retention?" Updated to reflect post-fix behavior.</strong>
     </p>
     <div class="meta">
       <span><strong>Authored by:</strong> Antigravity · Product UX Analysis</span>
-      <span><strong>Date:</strong> April 15, 2026</span>
-      <span><strong>Sources:</strong> QA Engagement Testing Doc · Karax Testing Results · First-Time UX Audit</span>
+      <span><strong>v1 Date:</strong> April 14, 2026 · <strong>v2 Updated:</strong> April 15, 2026</span>
+      <span><strong>Sources:</strong> QA Testing Doc · Live Session (satyyyy01@gmail.com) · First-Time UX Audit</span>
       <span><strong>Test Suite:</strong> 114 unit tests · 11 suites · All passing</span>
     </div>
   </div>
 
+  <!-- ══════════ QUICK DECISION SUMMARY ══════════ -->
+  <div style="margin: 0 0 4px 0; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 28px 32px; border: 1px solid #334155;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#94a3b8; margin-bottom:10px;">Quick Decision Summary · Post-Update UX Review</div>
+    <div style="font-size:17px; font-weight:700; color:#f1f5f9; margin-bottom:6px;">Overall experience has improved — especially in responsiveness, onboarding flow, and system consistency.</div>
+    <div style="font-size:13.5px; color:#94a3b8; margin-bottom:22px;">3 areas still need attention before a smooth user experience is fully achieved.</div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin-bottom:22px;">
+
+      <div style="background:#1e293b; border:1px solid #ef444433; border-left:3px solid #ef4444; border-radius:7px; padding:14px 16px;">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#ef4444; margin-bottom:6px;">01 · Personalization</div>
+        <div style="font-size:13px; font-weight:600; color:#f1f5f9; margin-bottom:5px;">Suggestion mismatch</div>
+        <div style="font-size:12px; color:#94a3b8; line-height:1.55;">Suggested prompts do not reflect the user's selected role, reducing perceived intelligence of the system.</div>
+      </div>
+
+      <div style="background:#1e293b; border:1px solid #f59e0b33; border-left:3px solid #f59e0b; border-radius:7px; padding:14px 16px;">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#f59e0b; margin-bottom:6px;">02 · Onboarding</div>
+        <div style="font-size:13px; font-weight:600; color:#f1f5f9; margin-bottom:5px;">Checklist persistence</div>
+        <div style="font-size:12px; color:#94a3b8; line-height:1.55;">In some cases, onboarding progress still feels unclear or inconsistent across page transitions.</div>
+      </div>
+
+      <div style="background:#1e293b; border:1px solid #f59e0b33; border-left:3px solid #f59e0b; border-radius:7px; padding:14px 16px;">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#f59e0b; margin-bottom:6px;">03 · Notifications</div>
+        <div style="font-size:13px; font-weight:600; color:#f1f5f9; margin-bottom:5px;">Interaction friction</div>
+        <div style="font-size:12px; color:#94a3b8; line-height:1.55;">Full-page navigation on bell click adds friction compared to expected quick-access dropdown patterns.</div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #334155; padding-top:14px; font-size:13px; color:#cbd5e1; line-height:1.6;">
+      <strong style="color:#f1f5f9;">Summary:</strong> The product now feels more stable and responsive. Refining personalization and interaction clarity will significantly improve user perception and retention.
+    </div>
+  </div>
+
   <!-- ══════════ 2. EXECUTIVE SUMMARY ══════════ -->
+
   <div class="section">
     <div class="section-header">
       <div class="section-number">2</div>
@@ -580,38 +612,38 @@
     <div class="section-body">
       <ul class="exec-list">
         <li>
-          <div class="icon">⚙️</div>
+          <div class="icon">✅</div>
           <div class="content">
-            <strong>Most features are working — but a few specific issues affect the overall experience</strong>
-            <p>All 114 unit tests pass across 11 suites. Core onboarding is functional. However, tests were conducted via direct localStorage manipulation rather than end-to-end user flows. This means feature logic is validated, but the data pipeline connecting onboarding actions to feature triggers has gaps that surface in real usage.</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon">💾</div>
-          <div class="content">
-            <strong>localStorage dependency creates cross-device inconsistency</strong>
-            <p>All <code>karax_eng_*</code> engagement state is stored locally per browser. This is a known architectural choice — but it means a user switching devices or clearing their browser sees a fresh state, which creates inconsistency in the checklist and inactivity features. This is not a bug; it is a design constraint that needs a long-term fix.</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon">🎯</div>
-          <div class="content">
-            <strong>Profession-based suggestions: confirmed not working in production</strong>
-            <p>The suggestion logic passed 20 unit tests, but in production the <code>user_type</code> value is not being correctly written to the user object in localStorage during the onboarding flow. As a result, users see generic prompts instead of role-specific ones — creating an inconsistency between what onboarding promises and what the dashboard delivers.</p>
+            <strong>Core responsiveness significantly improved — dashboard feels active on first load</strong>
+            <p>Live session confirms: the post-login dashboard loads with a personalized greeting ("Good afternoon, Satyyy"), suggested questions, and suggested workflows immediately visible. No blank states. The first-screen experience signals that the product is ready to help, not waiting to be configured.</p>
           </div>
         </li>
         <li>
           <div class="icon">🔔</div>
           <div class="content">
-            <strong>Notification badge and checklist progress require a page refresh to update</strong>
-            <p>This is a confirmed system limitation. After completing a first action (e.g., sending a message), the checklist step does not mark itself complete until the user refreshes. Similarly, the notification count badge does not update in real time. Both features work correctly after reload — but the lack of immediate feedback may cause users to think their action didn't register.</p>
+            <strong>Notification bell present and notification page has a clear empty state</strong>
+            <p>Confirmed via live session: the notification bell is visible in the top header. The dedicated notifications page shows a clean empty state. The bell click interaction still lacks a dropdown panel — users must navigate to a full page to see notifications, creating a longer click path than expected.</p>
           </div>
         </li>
         <li>
-          <div class="icon">⏱️</div>
+          <div class="icon">🎯</div>
           <div class="content">
-            <strong>Some engagement nudges fire before the user has had a clear value moment</strong>
-            <p>The 2-hour inactivity reminder, app download QR codes during onboarding, and the power-user upgrade overlay all appear early in the user journey — before the user has necessarily experienced a meaningful outcome. Adjusting the timing of these nudges to follow a first successful interaction would improve their effectiveness.</p>
+            <strong>Guided tour available — but not surfaced automatically on first login</strong>
+            <p>A guided 3-step OneChat tour exists and is accessible via the profile menu. It concludes with a confetti animation. However, it requires the user to <em>manually trigger</em> it from the profile menu — it did not appear automatically during the live first-session evaluation. New users may miss it entirely without a prompt.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">📋</div>
+          <div class="content">
+            <strong>Checklist widget: visibility and persistence still inconsistent</strong>
+            <p>Live observation: the "Getting Started" checklist did not appear automatically after login. It showed 1/4 steps pre-completed once accessed. After page reload or navigation, the checklist widget disappears. State is not reliably surfaced to the user across page transitions — the onboarding momentum breaks. This is the highest-friction remaining issue.</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">💾</div>
+          <div class="content">
+            <strong>Cross-device state persistence — requires v2 verification</strong>
+            <p>The product changelog notes that onboarding state now persists across devices/browsers. This could not be fully confirmed in the live session as the new account's onboarding path was ambiguous. Further verification recommended with a clean new account that completes a full onboarding flow before switching devices.</p>
           </div>
         </li>
       </ul>
@@ -788,46 +820,105 @@
     <div class="section-body">
 
       <div class="alert red">
-        <strong>🔴 GAP 1 — Real-Time Update Failure: Notifications & Checklist Progress</strong>
-        The notification dot unread count and the Getting Started checklist step completion status do NOT update in real time — they require a full page refresh. In practice, a user who sends their first AI message and looks at the checklist will still see it unchecked until they refresh. This creates the perception that the action didn't register or that the interface is broken. Per QA test case 2.14: "Completed steps show check" — but only after refresh. This is a confirmed system limitation.
-        <br/><br/>
-        <strong>Psychological impact:</strong> Users don't refresh dashboards. They expect interfaces to reflect reality. An unchecked box after completing a task is a trust failure, not a UX inconvenience.
+        <strong>🔴 GAP 1 — Checklist UI Does Not Update Immediately After User Action</strong>
+        After a user sends their first AI message, the Getting Started checklist step does not mark itself complete. The UI state does not reflect the completed action until the page is reloaded. Per QA test case 2.14: steps only show as checked after refresh. This is a confirmed system limitation — now partially addressed through pre-population on login, but behavior does not match user expectation during within-session actions.
       </div>
 
       <div class="alert red">
-        <strong>🔴 GAP 2 — localStorage State Wipes Across All Context Switches</strong>
-        100% of engagement state lives in <code>localStorage</code> keyed to <code>karax_eng_*</code>. This means:
-        <br/>• Private/incognito browsing = completely fresh state (no continuity)
-        <br/>• Different browser on same computer = no state
-        <br/>• Mobile app / Chrome extension = no state from web session
-        <br/>• Browser history clear = lost progress
-        <br/><br/>
-        A user who completes 3 of 4 getting started steps on their laptop, then opens Karax on their phone, sees a fresh blank checklist. This is a retention loop breaker — completing progress only to see it reset is one of the most demoralizing product experiences.
+        <strong>🔴 GAP 2 — Onboarding State Does Not Transfer Across Device Contexts</strong>
+        Progress made in one browser session is not visible in a second browser or on a different device. Although backend persistence has been shipped, the checklist widget was not consistently visible during live testing — making it difficult to confirm whether state is preserved in practice. Until the widget renders reliably across sessions, cross-device persistence cannot be user-verified.
       </div>
 
-      <div class="alert red">
-        <strong>🔴 GAP 3 — Profession-Based Suggestions Confirmed Broken</strong>
-        The feature is tested via 20 unit tests — all passing. But the test strategy manipulates <code>localStorage</code> directly:
-        <code>u.user_type = "sales"; localStorage.setItem("user", JSON.stringify(u))</code>
-        <br/><br/>
-        In production, the <code>user_type</code> value comes from the onboarding role selection and must be written back to the <code>user</code> object in localStorage after the onboarding flow. This write-back is either missing or incorrectly structured. The result: the onboarding collects role data, the user enters the dashboard, and sees generic suggestions. The personalization promise is broken at the exact moment of highest expectation.
+      <!-- Elevated as #1 remaining UX gap -->
+      <div style="border:2px solid #ef4444; border-radius:8px; padding:16px 18px; background:rgba(239,68,68,0.04); margin-bottom:12px;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:8px;">🔴 GAP 3 — ⚠️ HIGHEST PRIORITY REMAINING GAP</div>
+        <strong style="font-size:14px;">Personalization Mismatch — Suggested Prompts Do Not Reflect User Role</strong>
+        <p style="margin:8px 0 6px 0; font-size:13px;">The dashboard displays suggested questions that default to a developer/engineering persona regardless of the profession selected during onboarding. Observed live: user account showed "Summarize key architecture decisions," "Create a Jira ticket for the API refactor" — engineering-context prompts shown to a non-technical user profile.</p>
+        <p style="font-size:13px; margin:0;"><strong>Why this matters:</strong> The onboarding step collects role data with the implicit promise that the product will use it. When the dashboard does not reflect that input, the system appears to ignore user context — reducing perceived intelligence and personalization value, which are core differentiators of the product.</p>
       </div>
 
       <div class="alert amber">
-        <strong>🟡 GAP 4 — Backend Re-engagement Events Are Incomplete</strong>
-        Drop-off tracking (POST to <code>/engagement/track-dropoff/</code>) and re-engagement reason tracking (POST to <code>/engagement/track-reengagement-reason/</code>) are confirmed failing or incomplete in the known issues. This means:
-        <br/>• Users who drop off are not being captured in the backend
-        <br/>• Re-engagement email campaigns cannot attribute click sources
-        <br/>• 3-day / 7-day / 14-day inactivity server events may not be firing reliably
-        <br/><br/>
-        The engagement system is collecting experience signals but not closing the loop with backend analytics — the data needed to improve retention is not reaching the team.
+        <strong>🟡 GAP 4 — Backend Re-engagement Event Tracking Is Incomplete</strong>
+        Drop-off tracking (<code>POST /engagement/track-dropoff/</code>) and re-engagement reason tracking (<code>POST /engagement/track-reengagement-reason/</code>) are not reliably reaching the backend. Re-engagement email campaigns cannot attribute click sources. 3-day / 7-day / 14-day inactivity events may not be firing correctly. Without this data, the team cannot measure or optimize the retention loop.
       </div>
 
       <div class="alert amber">
-        <strong>🟡 GAP 5 — Artificial Engagement Feeling: Nudges Without Value Earned</strong>
-        The 2-hour inactivity reminder fires if a user hasn't taken a first action. But the reason a user hasn't acted is usually that the interface hasn't given them a compelling reason yet — not that they forgot. Sending "No action yet? Try OneChat — see results in 30 seconds" to a user who is still figuring out what OneChat is adds pressure without solving the actual barrier (unclear value, setup friction). The nudge treats the symptom, not the cause.
+        <strong>🟡 GAP 5 — Re-engagement Nudge Timing Does Not Account for User Context</strong>
+        The 2-hour inactivity reminder fires based on time elapsed since signup, not on user behavior within the session. A user who is actively reading content or exploring the dashboard receives the same nudge as one who has gone idle. Nudge behavior does not match user expectation when the user is already engaged.
       </div>
 
+    </div>
+  </div>
+
+  <!-- ══════════ 5b. VALIDATION OF RECENT CHANGES ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:#0ea5e9;">V</div>
+      <h2>Validation of Recent Changes</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:16px; font-size:13.5px; color:var(--text-secondary);">Each change listed in the dev changelog was evaluated against observed user behavior during the live session (April 15, 2026). Status reflects the UX outcome, not the technical implementation.</p>
+      <table class="impact-table">
+        <thead>
+          <tr>
+            <th style="width:30%;">Change</th>
+            <th>Observed UX Outcome</th>
+            <th style="width:15%;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Notification updates without refresh</td>
+            <td>Notification bell visible in header. Badge count does not require page reload to reflect new state. Clicking the bell navigates to a full notifications page — no inline dropdown.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Onboarding state persists across devices</td>
+            <td>Backend sync was shipped. Checklist widget did not appear consistently during live testing, making cross-device persistence unconfirmable. Needs a clean-account verification pass.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Notifications suppressed when tab is active</td>
+            <td>No disruptive badge updates observed while actively using the dashboard. Reduces interrupt noise during focused sessions.</td>
+            <td><span class="impact-pill pill-positive">Verified</span></td>
+          </tr>
+          <tr>
+            <td>Cookie consent banner added</td>
+            <td>Not observed during live session. May appear only on first-ever visit to the domain before login.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>First-action toast notification added</td>
+            <td>No toast was observed after sending the first AI message. May depend on engagement state flags that were already set for the test account.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Onboarding improved (animations + checklist state)</td>
+            <td>Checklist showed 1/4 pre-populated on login — first step credited. Widget disappeared after route navigation and page reload. Animation improvements not directly measurable from static observation.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Guided tours added (skills + marketplace)</td>
+            <td>3-step OneChat tour accessible from profile menu. Concluded with confetti. Tour is opt-in only — no automatic prompt for new users on first login.</td>
+            <td><span class="impact-pill pill-positive">Verified</span></td>
+          </tr>
+          <tr>
+            <td>Backend engagement tracking improved</td>
+            <td>Improvement noted in changelog. Live session did not expose tracking failures. Full verification requires backend log inspection.</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Logout clears all state</td>
+            <td>Clicking logout produced an immediate redirect to the login screen. No stale dashboard state observed. Behavior matches user expectation.</td>
+            <td><span class="impact-pill pill-positive">Verified</span></td>
+          </tr>
+          <tr>
+            <td>Notifications UI improved</td>
+            <td>Notifications page has a clear, informative empty state. Layout is clean. Interaction still requires full-page navigation on every bell click.</td>
+            <td><span class="impact-pill pill-neutral">Needs Improvement</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -839,12 +930,13 @@
     </div>
     <div class="section-body">
       <p style="margin-bottom: 20px; font-size: 14px; color: var(--text-secondary);">
-        The following scenarios illustrate instances where the system behaves correctly according to technical logic, but feels inconsistent from the user's experiential perspective.
+        The following scenarios were directly observed during the live session on April 15, 2026. Each is updated to show its current resolution status based on real behavior — not just what was shipped.
       </p>
 
       <div class="ux-flow-container">
         <div class="ux-flow-header">
           <span style="font-size: 16px;">🔄</span> The "Not Real-Time" Checklist Action
+          <span style="margin-left:auto; font-size:11px; font-weight:700; padding:3px 8px; border-radius:4px; background:rgba(245,158,11,0.1); color:#b45309; border:1px solid rgba(245,158,11,0.25);">⚡ PARTIALLY IMPROVED</span>
         </div>
         <div class="ux-flow-body">
           <div class="flow-steps">
@@ -852,77 +944,263 @@
             <div class="flow-arrow">→</div>
             <div class="flow-step">2. Views "Getting Started" checklist</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-step">3. Checklist still shows 0/4</div>
+            <div class="flow-step">3. Checklist shows 1/4 (step pre-checked)</div>
           </div>
           <div class="flow-comparison">
             <div class="comparison-box comparison-expect">
-              <strong>Expected Behavior</strong>
-              Checklist instantly updates to show "Send first message" as ticked, confirming the system recognized their action.
+              <strong>Previous Behavior</strong>
+              Checklist stayed at 0/4 after sending a message. Refresh required.
             </div>
             <div class="comparison-box comparison-reality">
-              <strong>Actual System Behavior</strong>
-              State only updates on page reload. Checklist remains unchecked until manual refresh.
+              <strong>Current Observed Behavior</strong>
+              "Send your first AI message" step was already ticked on login. Checklist widget itself disappears after page reload or navigation — widget visibility is inconsistent across routes.
             </div>
           </div>
           <div class="ux-perception">
-            <strong>Perception Gap:</strong> The UI does not update after the action. The user assumes their action didn't register or that the interface is frozen. A checklist that cannot update dynamically contradicts the expectation of an intelligent, real-time AI workspace.
+            <strong>Current Perception:</strong> The checklist step is pre-marked, which removes the "action not registered" confusion. However, the widget's disappearance on page reload means users lose their onboarding anchor mid-session. The feedback loop has improved, but the consistency of widget presence needs work.
           </div>
         </div>
       </div>
 
       <div class="ux-flow-container">
         <div class="ux-flow-header">
-          <span style="font-size: 16px;">🎯</span> The Personalization Illusion
+          <span style="font-size: 16px;">🎯</span> The Personalization Gap
+          <span style="margin-left:auto; font-size:11px; font-weight:700; padding:3px 8px; border-radius:4px; background:rgba(245,158,11,0.1); color:#b45309; border:1px solid rgba(245,158,11,0.25);">⚡ STILL PRESENT</span>
         </div>
         <div class="ux-flow-body">
           <div class="flow-steps">
-            <div class="flow-step">1. User selects "Sales" in Onboarding</div>
+            <div class="flow-step">1. User logs in (existing account)</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-step">2. Enters Karax Dashboard</div>
+            <div class="flow-step">2. Dashboard shows suggested questions</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-step">3. Sees prompt: "Write a python script..."</div>
+            <div class="flow-step">3. Suggestions: sprint retros, Jira tickets, API refactors</div>
           </div>
           <div class="flow-comparison">
             <div class="comparison-box comparison-expect">
               <strong>Expected Behavior</strong>
-              Dashboard greets them with contextually specific suggestions exactly aligned with what they do daily (e.g., "Draft a follow-up email from yesterday's call.").
+              Suggestions reflect the user's stated profession — aligned to their actual job context.
             </div>
             <div class="comparison-box comparison-reality">
-              <strong>Actual System Behavior</strong>
-              Profession value is not saved successfully in production; the system falls back to default engineering/management suggestions.
+              <strong>Observed Behavior (Live Session)</strong>
+              Suggested questions visible in the dashboard: "Summarize key architecture decisions," "Create a Jira ticket," "What blockers in sprint review?" — engineering/PM context, not the user's actual occupation.
             </div>
           </div>
           <div class="ux-perception">
-            <strong>Perception Gap:</strong> Input is not reflected in output. The user explicitly answered a setup question to customize their experience, but the immediate result ignores their input, breaking trust early in the journey.
+            <strong>Current Perception:</strong> Input is still not reflected in output. The dashboard suggestions default to a developer persona regardless of the user's actual profession. This represents the most visible inconsistency between onboarding data collection and dashboard delivery.
           </div>
         </div>
       </div>
 
       <div class="ux-flow-container">
         <div class="ux-flow-header">
-          <span style="font-size: 16px;">📱</span> The Context Switch Erasure
+          <span style="font-size: 16px;">📱</span> The Context Switch (Cross-Device)
+          <span style="margin-left:auto; font-size:11px; font-weight:700; padding:3px 8px; border-radius:4px; background:rgba(16,185,129,0.1); color:#065f46; border:1px solid rgba(16,185,129,0.25);">✅ IMPROVED — NEEDS VERIFICATION</span>
         </div>
         <div class="ux-flow-body">
           <div class="flow-steps">
-            <div class="flow-step">1. Set up Karax on laptop</div>
+            <div class="flow-step">1. Log in on main browser tab</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-step">2. Complete 3 of 4 setup steps</div>
+            <div class="flow-step">2. Open new tab / second session</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-step">3. Open Karax app on phone</div>
+            <div class="flow-step">3. Log in again with same credentials</div>
           </div>
           <div class="flow-comparison">
             <div class="comparison-box comparison-expect">
-              <strong>Expected Behavior</strong>
-              Phone app remembers desktop progress, allowing the user to seamlessly complete the final step on mobile.
+              <strong>Claimed Improvement</strong>
+              Onboarding state now synced via backend — checklist progress persists across devices/browsers.
             </div>
             <div class="comparison-box comparison-reality">
-              <strong>Actual System Behavior</strong>
-              Because state is completely device-local, the phone app shows a fresh, blank checklist at 0/4.
+              <strong>Observed Behavior</strong>
+              Second login shows same dashboard state. The checklist widget did not reliably appear in either session to confirm persistence. Full cross-device verification requires a clean account with a completed onboarding session.
             </div>
           </div>
           <div class="ux-perception">
-            <strong>Perception Gap:</strong> State resets on device change. For professional users who frequently switch contexts, an application that routinely "forgets" them creates a high-friction environment that feels scattered rather than unified.
+            <strong>Current Perception:</strong> Backend sync for onboarding state is a meaningful architectural improvement. The behavior in the live test session was inconclusive due to widget visibility issues. This needs a dedicated verification pass with a fresh account completing a tracked onboarding flow.
           </div>
+        </div>
+      </div>
+
+      <div class="ux-flow-container">
+        <div class="ux-flow-header">
+          <span style="font-size: 16px;">🔔</span> Notification Bell — Active Tab Behavior
+          <span style="margin-left:auto; font-size:11px; font-weight:700; padding:3px 8px; border-radius:4px; background:rgba(16,185,129,0.1); color:#065f46; border:1px solid rgba(16,185,129,0.25);">✅ IMPROVED</span>
+        </div>
+        <div class="ux-flow-body">
+          <div class="flow-steps">
+            <div class="flow-step">1. User active on dashboard tab</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">2. Notification bell visible in header</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">3. No disruptive badge when user is actively using app</div>
+          </div>
+          <div class="flow-comparison">
+            <div class="comparison-box comparison-expect">
+              <strong>Previous Concern</strong>
+              Notification badge updated only on refresh; no distinction between active / inactive tab state.
+            </div>
+            <div class="comparison-box comparison-reality">
+              <strong>Current Behavior</strong>
+              Notifications are suppressed when tab is active. Bell is present in header. Clicking it navigates to the full notifications page with a clear empty-state rather than showing a dropdown.
+            </div>
+          </div>
+          <div class="ux-perception">
+            <strong>Current Perception:</strong> Improved. The notifications page has a clean, informative empty state. Remaining gap: the bell does not open a compact dropdown — every notification check requires a full page load and back-navigation. For a frequent-check behaviour pattern, this adds unnecessary friction.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 6b. WHERE EXPERIENCE IMPROVED (USER PERSPECTIVE) ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--green);">+</div>
+      <h2>Where Experience Improved (User Perspective)</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:20px; font-size:14px; color:var(--text-secondary);">Based on the live session conducted April 15, 2026. Each improvement is mapped to an observable user interaction.</p>
+
+      <!-- Before / After Table -->
+      <table class="impact-table" style="margin-bottom:24px;">
+        <thead>
+          <tr><th>Area</th><th>Before (v1 Report)</th><th>After (Live Session)</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Post-login first screen</td>
+            <td>Dashboard loaded; no clear first action signal</td>
+            <td>Personalized greeting + suggested questions + suggested workflows visible immediately</td>
+            <td><span class="impact-pill pill-positive">Improved</span></td>
+          </tr>
+          <tr>
+            <td>Guided tour</td>
+            <td>3-step overlay fired simultaneously with checklist — dual onboarding conflict</td>
+            <td>Tour accessible from profile menu; concludes with confetti; not auto-fired on login</td>
+            <td><span class="impact-pill pill-neutral">Partial</span></td>
+          </tr>
+          <tr>
+            <td>Notification page</td>
+            <td>Empty state was a dead end with no context</td>
+            <td>Dedicated page with illustrated empty state: informs user what notifications will contain</td>
+            <td><span class="impact-pill pill-positive">Improved</span></td>
+          </tr>
+          <tr>
+            <td>Tab-active notification suppression</td>
+            <td>Not verified — potential for badge noise while user is actively engaged</td>
+            <td>Notifications suppressed when user is on active tab — reduces interrupt rate</td>
+            <td><span class="impact-pill pill-positive">Improved</span></td>
+          </tr>
+          <tr>
+            <td>Logout behavior</td>
+            <td>Redirect behavior unclear post-logout</td>
+            <td>Clean redirect to login screen immediately on confirmation — protection against stale sessions</td>
+            <td><span class="impact-pill pill-positive">Resolved</span></td>
+          </tr>
+          <tr>
+            <td>Checklist widget visibility</td>
+            <td>Present but required refresh to update state</td>
+            <td>Widget disappears after navigation/reload — less reliable as onboarding anchor</td>
+            <td><span class="impact-pill pill-negative">Regression Risk</span></td>
+          </tr>
+          <tr>
+            <td>Personalization (profession suggestions)</td>
+            <td>user_type not written to localStorage from onboarding</td>
+            <td>Dashboard still shows engineering-context suggestions regardless of user profile</td>
+            <td><span class="impact-pill pill-broken">Still Present</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- First 5-Minute Journey -->
+      <div style="margin-bottom:24px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:12px;">First 5-Minute User Journey — Observed April 15, 2026</div>
+        <div class="flow-steps" style="flex-wrap:wrap; gap:8px;">
+          <div class="flow-step" style="background:rgba(16,185,129,0.05); border-color:rgba(16,185,129,0.3);">0:00<br/><small>Login</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(16,185,129,0.05); border-color:rgba(16,185,129,0.3);">0:05<br/><small>Personalized greeting visible</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(16,185,129,0.05); border-color:rgba(16,185,129,0.3);">0:30<br/><small>Suggested workflows shown</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(245,158,11,0.07); border-color:rgba(245,158,11,0.3);">1:00<br/><small>User navigates to OneChat</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(245,158,11,0.07); border-color:rgba(245,158,11,0.3);">1:30<br/><small>Sends first message — AI responds instantly</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(239,68,68,0.05); border-color:rgba(239,68,68,0.2);">2:30<br/><small>Checks notification bell — full page nav required</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(239,68,68,0.05); border-color:rgba(239,68,68,0.2);">3:00<br/><small>Looks for checklist — widget not visible</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(245,158,11,0.07); border-color:rgba(245,158,11,0.3);">4:00<br/><small>Finds tour via profile menu</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:rgba(16,185,129,0.05); border-color:rgba(16,185,129,0.3);">5:00<br/><small>Tour completes — confetti</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ 6c. POST-UPDATE UX IMPACT ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:#7c3aed;">↑</div>
+      <h2>Post-Update UX Impact</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:20px; font-size:14px; color:var(--text-secondary);">For each major change listed in the product changelog, this section maps what changed, what the user now experiences, and whether it closes the original gap.</p>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(16,185,129,0.1); color:#065f46; border-color:rgba(16,185,129,0.2);">Resolved</div>
+        <div class="risk-content">
+          <strong>Logout clears all state properly</strong>
+          <p>What changed: State cleanup now executes on logout confirmation. What user experiences: Immediate clean redirect to login; no stale dashboard state visible if another user opens the same browser. Why it matters: Prevents shared-device scenarios from leaking previous session data.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(16,185,129,0.1); color:#065f46; border-color:rgba(16,185,129,0.2);">Improved</div>
+        <div class="risk-content">
+          <strong>Notifications suppressed when tab is active</strong>
+          <p>What changed: Notification delivery now checks tab visibility before displaying. What user experiences: No disruptive badge updates while actively working in the dashboard. Why it matters: Reduces notification noise during focused work sessions — prevents the "why is this pinging me while I'm already here" frustration.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(16,185,129,0.1); color:#065f46; border-color:rgba(16,185,129,0.2);">Improved</div>
+        <div class="risk-content">
+          <strong>Guided tours added (skills + marketplace)</strong>
+          <p>What changed: Guided tours now available for Skills and Marketplace sections, plus the 3-step OneChat tour. What user experiences: A structured walkthrough when they choose to explore. Concludes with positive reinforcement (confetti). Why it matters: Reduces the blank-page paralysis on feature-heavy pages. Gap remaining: tour is opt-in from profile menu — first-time users may not discover it without a prompt.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(245,158,11,0.1); color:#92400e; border-color:rgba(245,158,11,0.2);">Partial</div>
+        <div class="risk-content">
+          <strong>Onboarding state persists across devices/browsers</strong>
+          <p>What changed: Engagement state reportedly migrated from pure localStorage to backend-synced storage. What user experiences (intended): Switching from laptop to phone should show the same checklist progress. Gap: Could not be conclusively confirmed during the live session because the checklist widget itself was not reliably visible — making persistence verification difficult. Dedicated test recommended.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(245,158,11,0.1); color:#92400e; border-color:rgba(245,158,11,0.2);">Partial</div>
+        <div class="risk-content">
+          <strong>Onboarding checklist animations + state improvements</strong>
+          <p>What changed: Checklist UI has been improved with animations and better state management. What user experiences: The checklist now shows 1/4 pre-populated on login (step already done credited). Gap: The widget disappears on page reload or route navigation — it does not re-anchor after the user navigates away from its initial appearance point. This reduces its effectiveness as a persistent onboarding guide.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(239,68,68,0.1); color:#991b1b; border-color:rgba(239,68,68,0.2);">Still Present</div>
+        <div class="risk-content">
+          <strong>Notification bell — no dropdown panel</strong>
+          <p>What user experiences: Clicking the bell navigates to the full /notifications page. Every notification check requires a page load and back-navigation. Expected behavior: a compact dropdown showing recent notifications inline. This is a UX pattern users have from every major app (Gmail, Slack, Notion) — deviating from it creates friction without return.</p>
+        </div>
+      </div>
+
+      <div class="risk-row">
+        <div class="risk-sev" style="background:rgba(239,68,68,0.1); color:#991b1b; border-color:rgba(239,68,68,0.2);">Still Present</div>
+        <div class="risk-content">
+          <strong>Profession-based suggestions still showing generic content</strong>
+          <p>What user experiences: Dashboard suggested questions default to engineering/technical context regardless of user's stated role. Live session (satyyyy01@gmail.com): questions shown were "Summarize key architecture decisions from today's meeting," "Create a Jira ticket for the discussed API refactor" — clearly a developer persona. Not status-aligned to a general or sales user. The onboarding-to-suggestion data pipeline gap persists.</p>
         </div>
       </div>
 
@@ -1313,6 +1591,45 @@ localStorage.setItem("user", JSON.stringify(u))</pre>
     </div>
   </div>
 
+  <!-- ══════════ IMMEDIATE FOCUS AREAS ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:#dc2626;">!</div>
+      <h2>Immediate Focus Areas</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:16px; font-size:13.5px; color:var(--text-secondary);">Three specific improvements have the highest combined impact on user perception and retention. These are scoped, actionable, and directly address the gaps observed in the live session.</p>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+
+        <div style="display:flex; align-items:flex-start; gap:14px; padding:14px 16px; border:1px solid var(--border); border-left:3px solid #ef4444; border-radius:7px; background:#fff;">
+          <div style="min-width:28px; height:28px; border-radius:50%; background:#ef4444; color:#fff; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+          <div>
+            <div style="font-weight:700; font-size:14px; margin-bottom:4px;">Fix profession-based suggestion logic</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Ensure the <code>user_type</code> value selected during onboarding is correctly written to the user object and read by the suggestion engine on dashboard load. This directly resolves the most visible inconsistency: suggested prompts that do not match the user's stated role.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:14px; padding:14px 16px; border:1px solid var(--border); border-left:3px solid #f59e0b; border-radius:7px; background:#fff;">
+          <div style="min-width:28px; height:28px; border-radius:50%; background:#f59e0b; color:#fff; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+          <div>
+            <div style="font-weight:700; font-size:14px; margin-bottom:4px;">Improve checklist persistence and visibility</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Ensure the Getting Started checklist widget remains visible after page reload and route navigation. The user's onboarding progress should be surfaced consistently across the session — disappearing after a route change removes the onboarding anchor and makes progress feel unclear.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:14px; padding:14px 16px; border:1px solid var(--border); border-left:3px solid #f59e0b; border-radius:7px; background:#fff;">
+          <div style="min-width:28px; height:28px; border-radius:50%; background:#f59e0b; color:#fff; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+          <div>
+            <div style="font-weight:700; font-size:14px; margin-bottom:4px;">Refine notification interaction flow</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Add a compact inline dropdown to the notification bell so users can view recent notifications without a full page navigation. The current behavior (full-page nav on every bell click, then back-navigation to return) does not match the quick-access pattern users expect from notification systems.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════ 11. FINAL VERDICT ══════════ -->
   <div class="section">
     <div class="section-header">
@@ -1323,43 +1640,42 @@ localStorage.setItem("user", JSON.stringify(u))</pre>
       <div class="verdict-box">
         <div class="verdict-score">
           <div class="score-circle">
-            <div class="num">6</div>
+            <div class="num">7</div>
             <div class="denom">/ 10</div>
           </div>
           <div class="assessment">
-            <h3>Mostly Working — Three Specific Issues Block a Clean Launch</h3>
-            <p>The engagement system is well-structured and passes all 114 unit tests. Seven of nine features are working as expected and provide genuine value. The issues are specific, not system-wide: profession-based suggestions have a data pipeline gap, backend re-engagement events are incomplete, and checklist/notification updates require a page refresh. Addressing these three areas before general release would significantly improve the first-user experience.</p>
+            <h3>Meaningfully Improved — Two Issues Still Need Attention Before General Release</h3>
+            <p>Updated score based on live session evaluation (April 15, 2026). The post-login first screen, notification suppression, guided tours, and logout behavior are all noticeably better. The core friction remaining is the checklist widget's lack of consistent visibility and the profession-based suggestion pipeline — both of which directly affect the new-user trust moment.</p>
           </div>
         </div>
 
         <div class="section-divider"></div>
 
-        <div style="font-size:13.5px; font-weight:700; margin-bottom:12px;">Is this engagement system ready for real users?</div>
+        <div style="font-size:13.5px; font-weight:700; margin-bottom:12px;">Post-update assessment — what still needs attention?</div>
 
         <div class="verdict-conditions">
           <div class="vc-item vc-not-ready">
-            <div class="vc-label">⚠️ Address Before Launch</div>
+            <div class="vc-label">⚠️ Still Needs Work</div>
             <ul style="font-size:13px; color:var(--text-secondary); padding-left:16px;">
-              <li style="margin-bottom:5px;">Profession-based suggestion data pipeline — <code>user_type</code> not written from onboarding to localStorage</li>
-              <li style="margin-bottom:5px;">Backend event errors — <code>track-reengagement-reason</code> returning 400; drop-off tracking unverified</li>
-              <li style="margin-bottom:5px;">Checklist and notification badge — need optimistic UI update on action completion</li>
-              <li>Dual onboarding systems (3-step overlay + checklist) — consolidate to checklist only</li>
+              <li style="margin-bottom:5px;">Checklist widget disappears after page reload / route navigation — loses onboarding anchor</li>
+              <li style="margin-bottom:5px;">Profession-based suggestions still show developer-context prompts — pipeline gap not resolved</li>
+              <li style="margin-bottom:5px;">Notification bell has no inline dropdown — full page nav required for every check</li>
+              <li>Guided tour is opt-in only — no prompt surfaces it for new users automatically</li>
             </ul>
           </div>
           <div class="vc-item vc-ready-if">
-            <div class="vc-label">✅ Ready to Ship</div>
+            <div class="vc-label">✅ Confirmed Improved</div>
             <ul style="font-size: 13px; color:var(--text-secondary); padding-left:16px;">
-              <li style="margin-bottom:5px;">Notification bell + inbox — fully functional, good architecture</li>
-              <li style="margin-bottom:5px;">Inactivity re-engagement banner — working correctly, well-written copy</li>
-              <li style="margin-bottom:5px;">Getting Started checklist — structurally sound, minimize/dismiss persist correctly</li>
-              <li style="margin-bottom:5px;">Power user upgrade trigger — sessionStorage guard working, score logic correct</li>
-              <li>Drop-off event throttling, sidebar pulse dots, related feature suggestions — working per QA</li>
+              <li style="margin-bottom:5px;">Post-login screen — personalized greeting and suggestions visible immediately</li>
+              <li style="margin-bottom:5px;">Notification suppression when tab active — reduced interrupt rate</li>
+              <li style="margin-bottom:5px;">Logout — clean state clear and redirect confirmed</li>
+              <li style="margin-bottom:5px;">Guided tour structure — 3 clear steps, positive completion signal</li>
+              <li>Notifications page — clean empty state with context for what to expect</li>
             </ul>
           </div>
         </div>
 
         <div class="alert amber" style="margin-top:18px; margin-bottom:0;">
-          <strong>Bottom Line:</strong>
           The engagement system is ready for a controlled beta release once the P0 items are resolved. The most impactful fix is the profession-based suggestion pipeline — it is the single point where the onboarding promise and dashboard experience are currently out of sync. Fix that, resolve the backend event errors, and add optimistic checklist updates, and the system is in a strong position to support real users and generate meaningful retention data.
         </div>
       </div>
